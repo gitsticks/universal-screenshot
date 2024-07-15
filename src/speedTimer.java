@@ -24,13 +24,25 @@ public class speedTimer {
 
     int counter = 0;
 
+    String toWrite = "init...";
+
+    int secondsWrite = 0;
+    int millisecondsWrite = 0;
+    int minutesWrite = 0;
+
     while(true) {
 
-        emptyLabel.setText(Integer.toString(counter));
+        emptyLabel.setFont(new Font("Serif", Font.PLAIN, 100));
 
+        toWrite = Integer.toString(minutesWrite) + ":" + Integer.toString(secondsWrite) + ":" +  Integer.toString(millisecondsWrite);
+        emptyLabel.setText(toWrite);
         counter++;
 
-        try { TimeUnit.SECONDS.sleep(1);
+        secondsWrite = counter /1000;
+        minutesWrite = secondsWrite / 60;
+        millisecondsWrite = Math.abs(counter) % 1000;
+
+        try { TimeUnit.MILLISECONDS.sleep(1);
         } catch(InterruptedException e)
         {System.out.println(e);}
     }
