@@ -26,21 +26,29 @@ public class speedTimer {
 
     String toWrite = "init...";
 
-    int secondsWrite = 0;
+    long secondsWrite = 0;
     int millisecondsWrite = 0;
     int minutesWrite = 0;
 
+    long startTime = System.nanoTime();
+    long currentTime = 0;
+    long currentMilliTime = 0;
+    emptyLabel.setFont(new Font("Serif", Font.PLAIN, 100));
     while(true) {
 
-        emptyLabel.setFont(new Font("Serif", Font.PLAIN, 100));
 
-        toWrite = Integer.toString(minutesWrite) + ":" + Integer.toString(secondsWrite) + ":" +  Integer.toString(millisecondsWrite);
+        currentTime = System.nanoTime() - startTime;
+        currentMilliTime = currentTime / 1000000;
+
+        secondsWrite = currentMilliTime / 1000;
+
+        toWrite =
+                currentMilliTime/60000 + ":" +
+                currentMilliTime/1000 + ":" +
+                currentMilliTime;
+
         emptyLabel.setText(toWrite);
         counter++;
-
-        secondsWrite = counter /1000;
-        minutesWrite = secondsWrite / 60;
-        millisecondsWrite = Math.abs(counter) % 1000;
 
         try { TimeUnit.MILLISECONDS.sleep(1);
         } catch(InterruptedException e)
