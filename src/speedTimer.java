@@ -45,12 +45,12 @@ public class speedTimer {
         toWrite =
                 currentMilliTime/60000 + ":" +
                 currentMilliTime/1000 + ":" +
-                currentMilliTime;
+                (Math.abs(currentTime) % 1000);;
 
         emptyLabel.setText(toWrite);
         counter++;
 
-        try { TimeUnit.MILLISECONDS.sleep(1);
+        try { TimeUnit.MILLISECONDS.sleep(100);
         } catch(InterruptedException e)
         {System.out.println(e);}
     }
